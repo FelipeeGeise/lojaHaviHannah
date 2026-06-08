@@ -43,7 +43,6 @@ export default async function AdminPage() {
       <div className={styles.top}>
         <div>
           <span className={styles.subtitle}>ADMIN</span>
-
           <h1>Produtos</h1>
         </div>
 
@@ -56,7 +55,8 @@ export default async function AdminPage() {
       </div>
 
       <div className={styles.grid}>
-        {products.map((product) => {
+        {/* CORRIGIDO: Adicionado a tipagem flexível para passar direto no build estrito da Vercel */}
+        {products.map((product: { id: string; title: string; category: string | null; author: string | null; price: number; imageUrl: string | null }) => {
           // Validação rápida:
           // se a URL for nula, vazia ou inválida,
           // usa o fallback
