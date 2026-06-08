@@ -1,0 +1,229 @@
+.container {
+  margin-top: 100px;
+  padding: 40px;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 40px;
+}
+
+.subtitle {
+  display: block;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+
+  color: #777;
+
+  margin-bottom: 8px;
+}
+
+.button {
+  background: #000;
+
+  color: #fff;
+
+  padding: 12px 20px;
+
+  border-radius: 8px;
+
+  text-decoration: none;
+
+  font-weight: 600;
+
+  transition: 0.2s;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(260px, 1fr)
+  );
+
+  gap: 24px;
+}
+
+.card {
+  background: #fff;
+
+  border-radius: 14px;
+
+  overflow: hidden;
+
+  border: 1px solid #e5e5e5;
+
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.image {
+  width: 100%;
+  height: 340px;
+
+  object-fit: cover;
+}
+
+.info {
+  padding: 18px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.category {
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: #666;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+.info h2 {
+  font-size: 20px;
+
+  line-height: 1.3;
+}
+
+.info p {
+  color: #666;
+}
+
+.info strong {
+  font-size: 18px;
+}
+
+.deleteForm {
+  margin-top: 12px;
+}
+
+.deleteButton {
+  width: 100%;
+
+  border: none;
+
+  background: #dc2626;
+
+  color: #fff;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.deleteButton:hover {
+  background: #b91c1c;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 1024px) {
+  .container {
+    padding: 30px;
+  }
+
+  .image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .grid {
+    grid-template-columns: repeat(
+      auto-fill,
+      minmax(220px, 1fr)
+    );
+    gap: 20px;
+  }
+
+  .image {
+    height: 280px;
+  }
+
+  .info h2 {
+    font-size: 18px;
+  }
+
+  .info strong {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .image {
+    height: 240px;
+  }
+
+  .info {
+    padding: 16px;
+  }
+
+  .info h2 {
+    font-size: 16px;
+  }
+
+  .info p {
+    font-size: 14px;
+  }
+
+  .button {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .deleteButton {
+    padding: 12px;
+    font-size: 14px;
+  }
+}

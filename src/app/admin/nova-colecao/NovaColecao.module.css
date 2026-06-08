@@ -1,0 +1,156 @@
+/* src/app/admin/nova-colecao/NovaColecao.module.css */
+
+.container {
+  padding: 40px 70px;
+  max-width: 1400px;
+  margin: 120px auto 0 auto; /* Evita ficar abaixo do Header fixo */
+  font-family: sans-serif;
+  background-color: #fdfcf9; /* Tom sutil que acompanha a identidade do site */
+  min-height: 100vh;
+}
+
+/* Alinhamento flex do topo (Título + Botão Cadastrar) */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 20px;
+}
+
+.headerRow h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #111;
+  margin: 0;
+}
+
+/* Botão de voltar/cadastrar mais elegante */
+.backLink {
+  background-color: #111;
+  color: #fff;
+  padding: 10px 22px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.backLink:hover {
+  background-color: #333;
+}
+
+/* Grid principal travado em 4 colunas na horizontal com comportamento flex responsivo */
+.horizontalGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+/* Card administrativo minimalista */
+.cardAdmin {
+  background: #ffffff;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cardAdmin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* Container da imagem */
+.imageBox {
+  width: 100%;
+  height: 180px;
+  position: relative;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+/* Bloco de informações com crescimento flexível */
+.infoBox {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex-grow: 1; 
+}
+
+.infoBox h3 {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: #111;
+}
+
+.infoBox p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+/* Botão de excluir totalmente melhorado, refinado e com transição suave */
+.deleteButton {
+  width: 100%;
+  background-color: #fff;
+  color: #dc3545;
+  border: none;
+  border-top: 1px solid #f5f5f5;
+  padding: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  outline: none;
+}
+
+.deleteButton:hover {
+  background-color: #fff5f5; /* Fundo vermelho bem clarinho ao passar o mouse */
+  color: #bd2130; /* Vermelho mais escuro no texto */
+}
+
+/* ==========================================================================
+   RESPONSIVIDADE (Ajuste automático para tablets e smartphones)
+   ========================================================================== */
+
+@media (max-width: 1200px) {
+  .container {
+    padding: 40px 30px;
+  }
+  
+  .horizontalGrid {
+    grid-template-columns: repeat(3, 1fr); /* Cai para 3 colunas em telas médias-grandes */
+  }
+}
+
+@media (max-width: 900px) {
+  .horizontalGrid {
+    grid-template-columns: repeat(2, 1fr); /* Cai para 2 colunas em tablets */
+  }
+  
+  .headerRow {
+    flex-direction: column; /* Alinha o título e botão um abaixo do outro no tablet/celular */
+    align-items: flex-start;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 550px) {
+  .horizontalGrid {
+    grid-template-columns: 1fr; /* Força 1 coluna inteira em smartphones verticais */
+  }
+  
+  .container {
+    padding: 30px 15px;
+    margin-top: 100px;
+  }
+}

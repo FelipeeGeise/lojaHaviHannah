@@ -1,0 +1,92 @@
+.container {
+  padding: 100px 70px;
+  background-color: #f9f7f2; /* Fundo off-white da imagem */
+  text-align: center;
+}
+
+.header {
+  margin-bottom: 80px;
+}
+
+.subtitle {
+  display: block;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  color: #b5a48b;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-family: 'Serif', Georgia, serif; /* Use uma fonte serifada elegante */
+  font-size: 2.8rem;
+  color: #1a1a1a;
+  font-weight: 400;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 320px;
+}
+
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  background-color: #f2eee5;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #b5a48b;
+  margin-bottom: 30px;
+}
+
+.divider {
+  width: 50px;
+  border: none;
+  border-top: 1px solid #e0d9cc;
+  margin-bottom: 30px;
+}
+
+.itemTitle {
+  font-family: 'Serif', Georgia, serif;
+  font-size: 1.4rem;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.itemDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #666;
+  max-width: 280px;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
+  
+  .container {
+    padding: 60px 25px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}

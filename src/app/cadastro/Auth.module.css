@@ -1,0 +1,260 @@
+/* Estilos para as páginas de Auth */
+.authContainer {
+  min-height: calc(100vh - 90px); /* Desconta o tamanho do header */
+  margin-top: 90px; /* Garante que o conteúdo comece abaixo do header fixed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fcf9f5; /* Fundo creme suave para contrastar com o cabeçalho dark */
+  padding: 20px;
+}
+
+.authCard {
+  background-color: #180e08; /* Card escuro premium */
+  border: 1px solid rgba(212, 176, 123, 0.2);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.authCard h2 {
+  color: #ba4c15; /* Cor terracota do logo */
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  margin-bottom: 30px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputGroup label {
+  color: #d4b07b; /* Tom dourado */
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 14px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 12px 14px 12px 42px; /* Espaço para o ícone da esquerda */
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 176, 123, 0.2);
+  border-radius: 6px;
+  color: #ffffff;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.inputWrapper input:focus {
+  border-color: #d4b07b;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 2px rgba(212, 176, 123, 0.1);
+}
+
+/* Botão de mostrar/esconder senha */
+.eyeButton {
+  position: absolute;
+  right: 14px;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.eyeButton:hover {
+  color: #d4b07b;
+}
+
+/* Botão principal de envio */
+.submitBtn {
+  margin-top: 10px;
+  background-color: #ba4c15;
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  padding: 14px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+
+.submitBtn:hover {
+  background-color: #9c3b0e;
+  transform: translateY(-1px);
+}
+
+/* Texto de alternância no rodapé do card */
+.switchAuth {
+  margin-top: 25px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+}
+
+.switchAuth a {
+  color: #d4b07b;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.switchAuth a:hover {
+  color: #ba4c15;
+  text-decoration: underline;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 768px) {
+  .authContainer {
+    padding: 16px;
+    margin-top: 90px;
+  }
+
+  .authCard {
+    max-width: 100%;
+    padding: 32px 24px;
+  }
+
+  .authCard h2 {
+    font-size: 1.6rem;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+  }
+
+  .inputWrapper input {
+    font-size: 0.9rem;
+    padding: 12px 14px 12px 40px;
+  }
+
+  .submitBtn {
+    padding: 13px;
+    font-size: 0.95rem;
+  }
+
+  .switchAuth {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .authContainer {
+    padding: 12px;
+  }
+
+  .authCard {
+    padding: 24px 18px;
+    border-radius: 10px;
+  }
+
+  .authCard h2 {
+    font-size: 1.4rem;
+  }
+
+  .subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+  }
+
+  .form {
+    gap: 16px;
+  }
+
+  .inputGroup {
+    gap: 6px;
+  }
+
+  .inputGroup label {
+    font-size: 0.8rem;
+  }
+
+  .inputIcon {
+    left: 12px;
+  }
+
+  .eyeButton {
+    right: 12px;
+  }
+
+  .inputWrapper input {
+    padding: 11px 40px 11px 38px;
+    font-size: 0.9rem;
+  }
+
+  .submitBtn {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .switchAuth {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 360px) {
+  .authCard {
+    padding: 20px 14px;
+  }
+
+  .authCard h2 {
+    font-size: 1.25rem;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
+  }
+
+  .inputWrapper input {
+    font-size: 0.85rem;
+  }
+
+  .submitBtn {
+    font-size: 0.85rem;
+  }
+}

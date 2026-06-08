@@ -1,66 +1,104 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+// app/page.tsx
 
-export default function Home() {
+import Header from "./components/Header/Header";
+import Hero from "./components/Hero/Hero";
+import Featured from "./components/Featured/Featured";
+import Collections from "./components/Collections/Collections";
+import Promise from "./components/Promise/Promise";
+import Footer from "./components/Footer/Footer";
+
+import { prisma } from "./lib/prisma";
+
+interface Product {
+  id: string;
+  image: string;
+  oldPrice?: string;
+  price: string;
+  title: string;
+  author: string;
+  category: string;
+}
+
+interface Collection {
+  image: string;
+  title: string;
+  description: string;
+}
+
+export default async function Home() {
+  // Produtos reais do banco
+  const rawProducts = await prisma.product.findMany({
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+
+  // Collections reais do banco
+  const rawCollections =
+    await prisma.collection.findMany({
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+  // Adaptação dos dados do Prisma para o frontend
+  const products: Product[] =
+    rawProducts.map((product) => ({
+      id: product.id,
+
+      image: product.imageUrl,
+
+      oldPrice: product.oldPrice
+        ? `R$ ${product.oldPrice.toLocaleString(
+            "pt-BR",
+            {
+              minimumFractionDigits: 2,
+            }
+          )}`
+        : undefined,
+
+      price: `R$ ${product.price.toLocaleString(
+        "pt-BR",
+        {
+          minimumFractionDigits: 2,
+        }
+      )}`,
+
+      title: product.title,
+
+      author: product.author,
+
+      category: product.category,
+    }));
+
+  // Collections reais
+  const collections: Collection[] =
+    rawCollections.map((collection) => ({
+      image: collection.imageUrl,
+
+      title: collection.title,
+
+      description:
+        collection.description,
+    }));
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <Header />
+
+      <Hero />
+
+      {/* Produtos reais vindos do banco */}
+      <Featured products={products} />
+
+      {/* Collections reais do banco */}
+      <Collections
+        collections={collections}
+      />
+
+      <Promise />
+
+      <Footer />
+    </>
   );
 }

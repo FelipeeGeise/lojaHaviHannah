@@ -1,0 +1,379 @@
+.container {
+  padding: 60px 5% 20px 5%;
+
+  background-color: #f9f7f2;
+
+  min-height: 100vh;
+
+  margin-top: 50px;
+}
+
+.label {
+  font-size: 11px;
+
+  letter-spacing: 2.5px;
+
+  color: #a69685;
+
+  font-weight: 500;
+}
+
+.title {
+  font-family: 'Times New Roman', serif;
+
+  font-size: 3.5rem;
+
+  color: #1a1a1a;
+
+  margin: 8px 0 45px 0;
+
+  font-weight: 400;
+
+  line-height: 1.1;
+}
+
+.filterBar {
+  display: flex;
+
+  gap: 20px;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  margin-bottom: 20px;
+}
+
+.searchContainer {
+  display: flex;
+
+  align-items: center;
+
+  background: white;
+
+  border: 1px solid #e0ddd5;
+
+  padding: 10px 15px;
+
+  flex: 1;
+
+  min-width: 300px;
+
+  border-radius: 8px;
+}
+
+.searchInput {
+  border: none;
+
+  outline: none;
+
+  width: 100%;
+
+  padding-left: 10px;
+
+  font-size: 14px;
+
+  background: transparent;
+}
+
+.tabsContainer {
+  display: flex;
+
+  gap: 8px;
+
+  overflow-x: auto;
+
+  white-space: nowrap;
+
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+
+  padding-bottom: 4px;
+}
+
+.tabsContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.tab,
+.activeTab {
+  padding: 10px 22px;
+
+  border: 1px solid #e0ddd5;
+
+  background: white;
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  transition: 0.3s;
+
+  white-space: nowrap;
+
+  border-radius: 8px;
+
+  flex-shrink: 0;
+
+  text-decoration: none;
+
+  color: #222;
+}
+
+.tab:hover {
+  background-color: #f3efe8;
+}
+
+.activeTab {
+  background-color: #c2a685;
+
+  color: white;
+
+  border-color: #c2a685;
+}
+
+.divider {
+  border: 0;
+
+  border-top: 1px solid #eeebe3;
+
+  margin-bottom: 25px;
+}
+
+.resultsCount {
+  font-size: 14px;
+
+  color: #666;
+
+  margin-bottom: 25px;
+}
+
+/* ========================= */
+/* GRID PROFISSIONAL */
+/* ========================= */
+
+.productGrid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 32px;
+
+  align-items: start;
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.productCard {
+  width: 100%;
+
+  text-decoration: none;
+
+  transition: transform 0.3s ease;
+}
+
+.productCard:hover {
+  transform: translateY(-4px);
+}
+
+.imageWrapper {
+  background-color: #eee;
+
+  margin-bottom: 15px;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  aspect-ratio: 3 / 4;
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+}
+
+.img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+
+  transition: transform 0.5s;
+}
+
+.productCard:hover .img {
+  transform: scale(1.04);
+}
+
+.productDetails {
+  padding: 0 4px;
+}
+
+.pricing {
+  display: flex;
+
+  gap: 12px;
+
+  font-size: 13px;
+
+  margin-bottom: 8px;
+
+  flex-wrap: wrap;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+
+  color: #999;
+}
+
+.currentPrice {
+  color: #333;
+
+  font-weight: 600;
+}
+
+.productName {
+  font-family: 'Times New Roman', serif;
+
+  font-size: 1.15rem;
+
+  color: #002b5c;
+
+  margin: 0;
+
+  line-height: 1.35;
+
+  min-height: 54px;
+}
+
+.author {
+  color: #777;
+
+  font-size: 14px;
+
+  margin: 6px 0;
+}
+
+.categoryTag {
+  display: block;
+
+  font-size: 10px;
+
+  letter-spacing: 1.5px;
+
+  color: #c2a685;
+
+  margin-top: 12px;
+
+  font-weight: bold;
+}
+
+/* ========================= */
+/* RESPONSIVIDADE */
+/* ========================= */
+
+@media (max-width: 1200px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .title {
+    font-size: 3rem;
+  }
+
+  .productGrid {
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 20px 20px;
+  }
+
+  .title {
+    font-size: 2.4rem;
+
+    margin-bottom: 30px;
+  }
+
+  .filterBar {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 16px;
+  }
+
+  .searchContainer {
+    width: 100%;
+
+    min-width: unset;
+  }
+
+  .tabsContainer {
+    width: 100%;
+
+    padding-bottom: 4px;
+  }
+
+  .productName {
+    font-size: 1.05rem;
+
+    min-height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 32px 16px 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .label {
+    font-size: 10px;
+
+    letter-spacing: 2px;
+  }
+
+  .tab,
+  .activeTab {
+    padding: 9px 16px;
+
+    font-size: 13px;
+  }
+
+  .resultsCount {
+    font-size: 13px;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+  }
+
+  .productName {
+    font-size: 1rem;
+  }
+
+  .author {
+    font-size: 13px;
+  }
+
+  .pricing {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,80 @@
+.container {
+  padding: 40px;
+  max-width: 600px;
+  margin: 50px auto 0 auto;
+  font-family: sans-serif;
+  color: #333;
+}
+
+.container h1 {
+  font-size: 1.8rem;
+  color: #111;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: #f9f9f9;
+  padding: 30px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #555;
+  letter-spacing: 1px;
+}
+
+.field input[type="text"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.field input[type="text"]:focus {
+  border-color: #111;
+  outline: none;
+}
+
+.field input[type="file"] {
+  padding: 10px 0;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+/* Estilo do botão que envia direto para o Cloudinary/Componente */
+.addButton {
+  background-color: #111;
+  color: white;
+  border: none;
+  padding: 14px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 10px;
+}
+
+.addButton:hover {
+  background-color: #333;
+}

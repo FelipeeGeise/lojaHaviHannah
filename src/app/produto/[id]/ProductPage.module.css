@@ -1,0 +1,235 @@
+.container {
+    margin-top: 100px;
+
+    padding: 40px 60px;
+}
+
+.back {
+    display: inline-block;
+
+    margin-bottom: 30px;
+
+    text-decoration: none;
+
+    color: #555;
+
+    font-size: 14px;
+}
+
+.content {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+
+    align-items: start;
+
+    padding: 20px;
+}
+
+.imageArea {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+.image {
+    width: 80%;
+
+    height: auto;
+
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 10px;
+
+    gap: 18px;
+}
+
+.category {
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+    color: #777;
+}
+
+.info h1 {
+    font-size: 40px;
+
+    line-height: 1.2;
+
+    font-weight: 500;
+}
+
+.author {
+    color: #666;
+}
+
+.line {
+    width: 100%;
+
+    height: 1px;
+
+    background: #ddd;
+}
+
+.price {
+    font-size: 32px;
+
+    font-weight: 600;
+}
+
+.button {
+    width: 100%;
+
+    padding: 16px;
+
+    border: none;
+
+    background: #c8ae7d;
+
+    color: white;
+
+    font-weight: 700;
+
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.button:hover {
+    opacity: 0.9;
+}
+
+.descriptionArea {
+    margin-top: 20px;
+}
+
+.descriptionArea h3 {
+    margin-bottom: 14px;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    color: #777;
+}
+
+.description {
+    line-height: 1.8;
+
+    color: #444;
+}
+
+/* ========================= */
+/* RESPONSIVO */
+/* ========================= */
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 30px 40px;
+    }
+
+    .info h1 {
+        font-size: 34px;
+    }
+
+    .price {
+        font-size: 28px;
+    }
+
+    .image {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        margin-top: 80px;
+
+        padding: 20px;
+    }
+
+    .content {
+        grid-template-columns: 1fr;
+
+        gap: 40px;
+
+        padding: 0;
+    }
+
+    .imageArea {
+        justify-content: center;
+    }
+
+    .image {
+        width: 100%;
+
+        max-width: 420px;
+    }
+
+    .info {
+        padding: 0;
+    }
+
+    .info h1 {
+        font-size: 30px;
+    }
+
+    .price {
+        font-size: 26px;
+    }
+
+    .button {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 16px;
+    }
+
+    .back {
+        font-size: 13px;
+    }
+
+    .info h1 {
+        font-size: 24px;
+
+        line-height: 1.3;
+    }
+
+    .author {
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 22px;
+    }
+
+    .description {
+        font-size: 14px;
+
+        line-height: 1.7;
+    }
+
+    .button {
+        font-size: 13px;
+
+        padding: 14px;
+    }
+}
