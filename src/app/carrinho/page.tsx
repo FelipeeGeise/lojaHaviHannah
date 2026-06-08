@@ -9,13 +9,14 @@ import { useCart } from '../context/CartContext';
 
 export default function CarrinhoPage() {
     const { cartItems, addToCart, removeFromCart } = useCart();
-    // Estado local simples apenas para forçar a renderização da tela ao diminuir
     const [, setTick] = useState(0);
 
+    // Corrigido: Agora passando o 'author' aqui
     const increaseQuantity = (item: typeof cartItems[0]) => {
         addToCart({
             id: item.id,
             title: item.title,
+            author: item.author, // Adicionado
             price: item.price,
             imageUrl: item.imageUrl
         });
@@ -24,7 +25,7 @@ export default function CarrinhoPage() {
     const decreaseQuantity = (item: typeof cartItems[0]) => {
         if (item.quantity > 1) {
             item.quantity -= 1;
-            setTick(prev => prev + 1); // Força a tela a atualizar o número
+            setTick(prev => prev + 1); 
         } else {
             removeFromCart(item.id);
         }
@@ -69,6 +70,7 @@ export default function CarrinhoPage() {
 
                         <div className={styles.itemInfo}>
                             <h2>{item.title}</h2>
+                            <p>por {item.author}</p> {/* Exibindo o autor */}
                             <p>R$ {item.price.toFixed(2)}</p>
 
                             <div className={styles.quantityControl}>
