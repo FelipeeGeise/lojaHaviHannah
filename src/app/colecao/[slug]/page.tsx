@@ -1,12 +1,8 @@
 import Header from '@/app/components/Header/Header';
 import Footer from '@/app/components/Footer/Footer';
-
 import Image from 'next/image';
-
 import Link from 'next/link';
-
 import styles from './Colecao.module.css';
-
 import { prisma } from '@/app/lib/prisma';
 
 interface PageProps {
@@ -18,11 +14,8 @@ interface PageProps {
 export default async function PaginaColecao({
   params,
 }: PageProps) {
-  const resolvedParams =
-    await params;
-
-  const slug =
-    resolvedParams.slug;
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
 
   const categorias = [
     'Todos',
@@ -35,28 +28,19 @@ export default async function PaginaColecao({
     'Família',
   ];
 
-  const normalizar = (
-    texto: string
-  ) =>
+  const normalizar = (texto: string) =>
     texto
       .normalize('NFD')
-      .replace(
-        /[\u0300-\u036f]/g,
-        ''
-      )
+      .replace(/[\u0300-\u036f]/g, '')
       .toLowerCase()
       .replace(/\s+/g, '-');
 
   const categoriaAtivaNome =
-    categorias.find(
-      (cat) =>
-        normalizar(cat) === slug
-    ) || slug;
+    categorias.find((cat) => normalizar(cat) === slug) || slug;
 
   // =========================
   // BUSCA REAL DO PRISMA
   // =========================
-
   const produtos =
     slug === 'todos'
       ? await prisma.product.findMany({
@@ -66,10 +50,8 @@ export default async function PaginaColecao({
         })
       : await prisma.product.findMany({
           where: {
-            category:
-              categoriaAtivaNome,
+            category: categoriaAtivaNome,
           },
-
           orderBy: {
             createdAt: 'desc',
           },
@@ -80,64 +62,31 @@ export default async function PaginaColecao({
       <Header />
 
       <main className={styles.container}>
-        <header
-          className={styles.pageHeader}
-        >
-          <span className={styles.label}>
-            COLEÇÃO
-          </span>
-
-          <h1 className={styles.title}>
-            {categoriaAtivaNome}
-          </h1>
+        <header className={styles.pageHeader}>
+          <span className={styles.label}>COLEÇÃO</span>
+          <h1 className={styles.title}>{categoriaAtivaNome}</h1>
         </header>
 
-        <section
-          className={styles.filterBar}
-        >
-          <div
-            className={
-              styles.searchContainer
-            }
-          >
-            <span
-              className={
-                styles.searchIcon
-              }
-            >
-              🔍
-            </span>
-
+        <section className={styles.filterBar}>
+          <div className={styles.searchContainer}>
+            <span className={styles.searchIcon}>🔍</span>
             <input
               type="text"
               placeholder="Buscar livros ou autores..."
-              className={
-                styles.searchInput
-              }
+              className={styles.searchInput}
             />
           </div>
 
-          <div
-            className={
-              styles.tabsContainer
-            }
-          >
+          <div className={styles.tabsContainer}>
             {categorias.map((cat) => {
-              const catSlug =
-                normalizar(cat);
-
-              const isActive =
-                slug === catSlug;
+              const catSlug = normalizar(cat);
+              const isActive = slug === catSlug;
 
               return (
                 <Link
                   key={cat}
                   href={`/colecao/${catSlug}`}
-                  className={
-                    isActive
-                      ? styles.activeTab
-                      : styles.tab
-                  }
+                  className={isActive ? styles.activeTab : styles.tab}
                 >
                   {cat}
                 </Link>
@@ -149,25 +98,15 @@ export default async function PaginaColecao({
         <hr className={styles.divider} />
 
         <section className={styles.content}>
-          <p
-            className={
-              styles.resultsCount
-            }
-          >
-            {produtos.length}{' '}
-            livro(s) encontrado(s)
+          <p className={styles.resultsCount}>
+            {produtos.length} livro(s) encontrado(s)
           </p>
 
-          <div
-            className={
-              styles.productGrid
-            }
-          >
-            {produtos.map((produto) => {
+          <div className={styles.productGrid}>
+            {/* CORRIGIDO: Adicionado a tipagem dos produtos mapeados do banco para travar erros na Vercel */}
+            {produtos.map((produto: { id: string; title: string; price: number; oldPrice: number | null; imageUrl: string | null; author: string | null; category: string | null }) => {
               const imageUrl =
-                produto.imageUrl &&
-                produto.imageUrl.trim() !==
-                  ''
+                produto.imageUrl && produto.imageUrl.trim() !== ''
                   ? produto.imageUrl
                   : '/images/placeholder.jpg';
 
@@ -175,15 +114,9 @@ export default async function PaginaColecao({
                 <Link
                   key={produto.id}
                   href={`/produto/${produto.id}`}
-                  className={
-                    styles.productCard
-                  }
+                  className={styles.productCard}
                 >
-                  <div
-                    className={
-                      styles.imageWrapper
-                    }
-                  >
+                  <div className={styles.imageWrapper}>
                     <Image
                       src={imageUrl}
                       alt={produto.title}
@@ -194,72 +127,28 @@ export default async function PaginaColecao({
                     />
                   </div>
 
-                  <div
-                    className={
-                      styles.productDetails
-                    }
-                  >
-                    <div
-                      className={
-                        styles.pricing
-                      }
-                    >
+                  <div className={styles.productDetails}>
+                    <div className={styles.pricing}>
                       {produto.oldPrice && (
-                        <span
-                          className={
-                            styles.oldPrice
-                          }
-                        >
+                        <span className={styles.oldPrice}>
                           R${' '}
-                          {produto.oldPrice.toLocaleString(
-                            'pt-BR',
-                            {
-                              minimumFractionDigits:
-                                2,
-                            }
-                          )}
+                          {produto.oldPrice.toLocaleString('pt-BR', {
+                            minimumFractionDigits: 2,
+                          })}
                         </span>
                       )}
 
-                      <span
-                        className={
-                          styles.currentPrice
-                        }
-                      >
+                      <span className={styles.currentPrice}>
                         R${' '}
-                        {produto.price.toLocaleString(
-                          'pt-BR',
-                          {
-                            minimumFractionDigits:
-                              2,
-                          }
-                        )}
+                        {produto.price.toLocaleString('pt-BR', {
+                          minimumFractionDigits: 2,
+                        })}
                       </span>
                     </div>
 
-                    <h3
-                      className={
-                        styles.productName
-                      }
-                    >
-                      {produto.title}
-                    </h3>
-
-                    <p
-                      className={
-                        styles.author
-                      }
-                    >
-                      {produto.author}
-                    </p>
-
-                    <span
-                      className={
-                        styles.categoryTag
-                      }
-                    >
-                      {produto.category}
-                    </span>
+                    <h3 className={styles.productName}>{produto.title}</h3>
+                    <p className={styles.author}>{produto.author}</p>
+                    <span className={styles.categoryTag}>{produto.category}</span>
                   </div>
                 </Link>
               );
