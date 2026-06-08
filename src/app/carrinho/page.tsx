@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { ShoppingBag, Trash2 } from 'lucide-react';
 import styles from './Carrinho.module.css';
@@ -7,13 +8,10 @@ import Image from 'next/image';
 import { useCart } from '../context/CartContext';
 
 export default function CarrinhoPage() {
-    const {
-        cartItems,
-        addToCart,
-        removeFromCart,
-    } = useCart();
+    const { cartItems, addToCart, removeFromCart } = useCart();
+    // Estado local simples apenas para forçar a renderização da tela ao diminuir
+    const [, setTick] = useState(0);
 
-    // Aumenta a quantidade: O addToCart já soma +1 por padrão
     const increaseQuantity = (item: typeof cartItems[0]) => {
         addToCart({
             id: item.id,
@@ -23,20 +21,11 @@ export default function CarrinhoPage() {
         });
     };
 
-    // CORRIGIDO: Diminui a quantidade alterando o valor e forçando a atualização do Context
     const decreaseQuantity = (item: typeof cartItems[0]) => {
         if (item.quantity > 1) {
-            // Forçamos a propriedade interna a diminuir
             item.quantity -= 1;
-
-            // Para fazer o CartContext salvar e atualizar a tela com o novo valor,
-            // passamos uma cópia do item. Como o `addToCart` adicionaria +1 se achasse o ID,
-            // nós "enganamos" o estado passando temporariamente um ID modificado ou
-            // atualizando a lista via mutação controlada que o JavaScript aceita no Next.js:
-            addToCart({ id: 'FORCE_UPDATE_HAVIHANNAH_CART' } as any);
-            removeFromCart('FORCE_UPDATE_HAVIHANNAH_CART');
+            setTick(prev => prev + 1); // Força a tela a atualizar o número
         } else {
-            // Se for 1, remove direto da bolsa
             removeFromCart(item.id);
         }
     };
@@ -56,13 +45,8 @@ export default function CarrinhoPage() {
             <div className={styles.emptyCart}>
                 <ShoppingBag size={52} strokeWidth={1.3} />
                 <h1>Seu carrinho está vazio</h1>
-                <p>
-                    Explore nosso catálogo e encontre o livro perfeito
-                    para sua jornada espiritual.
-                </p>
-                <Link href="/" className={styles.catalogButton}>
-                    EXPLORAR CATÁLOGO
-                </Link>
+                <p>Explore nosso catálogo e encontre o livro perfeito para sua jornada espiritual.</p>
+                <Link href="/" className={styles.catalogButton}>EXPLORAR CATÁLOGO</Link>
             </div>
         );
     }
@@ -88,25 +72,15 @@ export default function CarrinhoPage() {
                             <p>R$ {item.price.toFixed(2)}</p>
 
                             <div className={styles.quantityControl}>
-                                <button onClick={() => decreaseQuantity(item)}>
-                                    −
-                                </button>
+                                <button onClick={() => decreaseQuantity(item)}>−</button>
                                 <span>{item.quantity}</span>
-                                <button onClick={() => increaseQuantity(item)}>
-                                    +
-                                </button>
+                                <button onClick={() => increaseQuantity(item)}>+</button>
                             </div>
                         </div>
 
                         <div className={styles.itemActions}>
-                            <strong>
-                                R$ {(item.price * item.quantity).toFixed(2)}
-                            </strong>
-
-                            <button
-                                className={styles.removeButton}
-                                onClick={() => removeFromCart(item.id)}
-                            >
+                            <strong>R$ {(item.price * item.quantity).toFixed(2)}</strong>
+                            <button className={styles.removeButton} onClick={() => removeFromCart(item.id)}>
                                 <Trash2 size={18} strokeWidth={1.5} />
                             </button>
                         </div>
@@ -115,31 +89,15 @@ export default function CarrinhoPage() {
             </div>
 
             <div className={styles.summary}>
-                <div>
-                    <span>Itens</span>
-                    <strong>{totalItems}</strong>
-                </div>
-                <div>
-                    <span>Subtotal</span>
-                    <strong>R$ {subtotal.toFixed(2)}</strong>
-                </div>
-                <div>
-                    <span>Frete</span>
-                    <p>Calculado no checkout</p>
-                </div>
-                <div>
-                    <span>Total</span>
-                    <strong>R$ {subtotal.toFixed(2)}</strong>
-                </div>
+                <div><span>Itens</span><strong>{totalItems}</strong></div>
+                <div><span>Subtotal</span><strong>R$ {subtotal.toFixed(2)}</strong></div>
+                <div><span>Frete</span><p>Calculado no checkout</p></div>
+                <div><span>Total</span><strong>R$ {subtotal.toFixed(2)}</strong></div>
             </div>
 
             <div className={styles.cartButtons}>
-                <Link href="/" className={styles.continueShoppingButton}>
-                    CONTINUAR COMPRANDO
-                </Link>
-                <Link href="/checkout" className={styles.checkoutButton}>
-                    FINALIZAR COMPRA
-                </Link>
+                <Link href="/" className={styles.continueShoppingButton}>CONTINUAR COMPRANDO</Link>
+                <Link href="/checkout" className={styles.checkoutButton}>FINALIZAR COMPRA</Link>
             </div>
         </div>
     );

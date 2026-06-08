@@ -1,10 +1,10 @@
 // src/app/layout.tsx
 
 import { AuthProvider } from './context/AuthContext';
-import { CartProvider } from './context/CartContext'; // ✅ Agora importado do arquivo correto!
+import { CartProvider } from './context/CartContext';
 import Header from './components/Header/Header';
 
-// @ts-ignore: allow side-effect CSS import without type declarations
+// @ts-expect-error: allow side-effect CSS import without type declarations
 import './globals.css';
 
 export default function RootLayout({
@@ -15,11 +15,9 @@ export default function RootLayout({
   return (
     <html lang="pt-BR">
       <body>
-        {/* Providers globais */}
         <AuthProvider>
           <CartProvider>
             <Header />
-
             {children}
           </CartProvider>
         </AuthProvider>
