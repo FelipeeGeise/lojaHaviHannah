@@ -2,11 +2,21 @@ import { prisma } from "../../lib/prisma";
 import { deleteCollection } from "../../actions/collection-actions"; 
 import { revalidatePath } from "next/cache";
 import Link from 'next/link';
+import Image from 'next/image'; // ✅ Importado o componente Image do Next.js
 import styles from './NovaColecao.module.css';
 
+// Definição da interface para garantir 100% de tipagem ao TypeScript
+interface CollectionItem {
+  id: string;
+  title: string;
+  description: string | null;
+  imageUrl: string;
+  createdAt: Date;
+}
+
 export default async function NovaColecaoPage() {
-  // Busca as coleções atualizadas diretamente do banco PostgreSQL
-  const collections = await prisma.collection.findMany({
+  // Busca as coleções atualizadas diretamente do banco PostgreSQL com a tipagem estrita
+  const collections: CollectionItem[] = await prisma.collection.findMany({
     orderBy: { createdAt: 'desc' }
   });
 
@@ -23,11 +33,15 @@ export default async function NovaColecaoPage() {
       <div className={styles.horizontalGrid}>
         {collections.map((item) => (
           <div key={item.id} className={styles.cardAdmin}>
-            <div className={styles.imageBox}>
-              <img 
+            <div className={styles.imageBox} style={{ position: 'relative' }}>
+              {/* ✅ Substituído por <Image /> com propriedades otimizadas contra erros de LCP */}
+              <Image 
                 src={item.imageUrl} 
                 alt={item.title} 
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                fill
+                sizes="(max-width: 768px) 100vw, 25vw"
+                priority
+                style={{ objectFit: 'cover' }} 
               />
             </div>
             
