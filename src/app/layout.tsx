@@ -4,8 +4,8 @@ import { AuthProvider } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import Header from './components/Header/Header';
 
-// @ts-expect-error: allow side-effect CSS import without type declarations
-import './globals.css';
+
+import '@/app/globals.css';
 
 export default function RootLayout({
   children,
